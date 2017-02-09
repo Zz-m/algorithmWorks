@@ -1,2 +1,2 @@
 # algorithmWorks
-Algorithm Homework Staff
+Algorithm Homework Stuff
