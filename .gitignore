@@ -14,3 +14,6 @@ hs_err_pid*
 out/
 target/
 !/lib/algs4.jar
+
+# IDEA project file
+*.iml
