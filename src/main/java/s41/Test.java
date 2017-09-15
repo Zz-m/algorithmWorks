@@ -1,6 +1,7 @@
 package s41;
 
 import edu.princeton.cs.algorithms.Graph;
+import edu.princeton.cs.introcs.StdOut;
 
 /**
  * t1
@@ -12,5 +13,6 @@ public class Test {
         edu.princeton.cs.algorithms.Graph graph = new Graph(3);
         graph.addEdge(1,2);
         System.out.println(graph);
+        StdOut.println(1);
     }
 }
