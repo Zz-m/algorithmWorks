@@ -6,6 +6,10 @@ import edu.princeton.cs.algorithms.Digraph;
 /**
  * shortest ancestral path
  * 两个顶点v,w。他们最近的共同祖先节点
+ *
+ * 目前解法，对两个source进行完整的BFS，从头遍历，找到都连接source并且距离之和最小的节点
+ *
+ * 优化：不用完整BFS，依次对两个source BFS ，找到共同的就停止？
  */
 public class SAP {
 
