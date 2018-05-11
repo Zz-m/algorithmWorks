@@ -15,9 +15,7 @@ public class WordNetTest {
 
     @Test
     public void testRead() {
-        File currentDirFile = new File(".");
-        String path = (currentDirFile.getAbsolutePath() + "/res/assignment/s42/wordnet/synsets100-subgraph.txt");
-        In in = new In(path);
+        In in = new In(WordNetTest.class.getResource("/assignment/s42/wordnet/synsets100-subgraph.txt"));
         while (true) {
             String inString = in.readLine();
             if (inString == null) break;

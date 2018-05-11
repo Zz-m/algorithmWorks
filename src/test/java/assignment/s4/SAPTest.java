@@ -30,9 +30,7 @@ public class SAPTest {
     public void test() throws Exception {
         int i = 7;
         int j = 2;
-        File currentDirFile = new File(".");
-        String path = (currentDirFile.getAbsolutePath() + "/res/assignment/s42/wordnet/digraph1.txt");
-        In in = new In(path);
+        In in = new In(SAPTest.class.getResource("/assignment/s42/wordnet/digraph1.txt"));
         Digraph digraph = new Digraph(in);
         SAP sap = new SAP(digraph);
         int length = sap.length(i, j);

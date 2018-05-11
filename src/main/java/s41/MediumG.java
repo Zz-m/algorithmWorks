@@ -11,6 +11,9 @@ public class MediumG {
 
     public static Graph getMediumG() {
         File currentDirFile = new File(".");
+        System.out.println("ss");
+        System.out.println(MediumG.class.getResource("/mediumG.txt"));
+//        return new Graph(new In(MediumG.class.getResource("res/mediumG.txt")));
         return new Graph(new In(currentDirFile.getAbsolutePath() + "/res/mediumG.txt"));
     }
 
