@@ -3,6 +3,8 @@ package s43;
 import edu.princeton.cs.algorithms.Bag;
 import edu.princeton.cs.introcs.In;
 
+import java.util.Iterator;
+
 /**
  * Created by dhx on 2018/5/9.
  * 加权图
@@ -22,9 +24,12 @@ public class EdgeWeightedGraph {
     }
 
     public EdgeWeightedGraph(In in){
-        this.v = in.readInt();
-        Edge edge = new Edge(in.readInt(), in.readInt(), in.readDouble());
-        addEdge(edge);
+        this(in.readInt());
+        int e = in.readInt();
+        for (int i = 0; i < e; i++) {
+            Edge edge = new Edge(in.readInt(), in.readInt(), in.readDouble());
+            addEdge(edge);
+        }
     }
 
     public int v() {
@@ -54,5 +59,16 @@ public class EdgeWeightedGraph {
                 if (e.other(i) > i) bag.add(e);
         }
         return bag;
+    }
+
+    public static EdgeWeightedGraph tinyEWG() {
+        return new EdgeWeightedGraph(new In(EdgeWeightedGraph.class.getResource("/tinyEWG.TXT")));
+    }
+
+    public static void main(String[] args) {
+        Iterator<Edge> iterator = EdgeWeightedGraph.tinyEWG().adj(0).iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
     }
 }
