@@ -27,14 +27,4 @@ public class TinyG {
         return graph;
     }
 
-    public static void main(String[] args) {
-        String path =  "F:\\mediumG.txt";
-        StdOut.println(path);
-        In in = new In(path);
-//        while (in.hasNextLine()) {
-//            StdOut.println(in.readInt());
-//        }
-        Graph graph = new Graph(in);
-        StdOut.println(graph.E());
-    }
 }
