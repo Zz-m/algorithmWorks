@@ -25,7 +25,7 @@ public class Edge implements Comparable<Edge>{
     }
 
     public int other(int v) {
-        return v == this.v ? w : v;
+        return v == this.v ? w : this.v;
     }
 
     @Override
@@ -39,7 +39,10 @@ public class Edge implements Comparable<Edge>{
     }
 
     public static void main(String[] args) {
-        Edge edge = new Edge(1, 2, 3.223);
+        Edge edge = new Edge(1, 7, 3.223);
         System.out.println(edge);
+        System.out.println(edge.either());
+        System.out.println(edge.other(1));
+        System.out.println(edge.other(7));
     }
 }
