@@ -40,6 +40,7 @@ public class EdgeWeightedDigraph {
         e++;
     }
 
+    //v点指出的边
     Iterable<DirectedEdge> adj(int v) {
         return adj[v];
     }
