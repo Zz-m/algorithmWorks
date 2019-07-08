@@ -62,7 +62,7 @@ public class EdgeWeightedGraph {
     }
 
     public static EdgeWeightedGraph tinyEWG() {
-        return new EdgeWeightedGraph(new In(EdgeWeightedGraph.class.getResource("/tinyEWG.TXT")));
+        return new EdgeWeightedGraph(new In(EdgeWeightedGraph.class.getResource("/tinyEWG.txt")));
     }
 
     public static void main(String[] args) {
