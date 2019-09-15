@@ -10,6 +10,7 @@ public class TinyGTest {
         Graph graph = TinyG.getTinyG();
         assertTrue(graph.E() > 0);
         assertTrue(graph.V() > 0);
+        assertEquals(1+1, 3);
     }
 
 }
