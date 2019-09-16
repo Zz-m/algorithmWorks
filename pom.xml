@@ -87,7 +87,7 @@
                 <artifactId>maven-site-plugin</artifactId>
                 <version>3.8.2</version>
                 <configuration>
-                    <locales>cn,en</locales>
+                    <locales>zh_CN,en</locales>
                 </configuration>
             </plugin>
         </plugins>
@@ -95,19 +95,32 @@
 
     <reporting>
         <plugins>
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-checkstyle-plugin</artifactId>-->
+<!--                <version>3.0.0</version>-->
+<!--            </plugin>-->
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>3.0.0</version>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <!-- select non-aggregate reports -->
+                            <report>report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
             </plugin>
         </plugins>
     </reporting>
 
     <distributionManagement>
         <site>
-            <id>denghanxi.cn</id>
-            <url>scp://denghanxi.cn/algorithm/</url>
+            <id>nuc199</id>
+            <url>scp://192.168.1.199/home/adj/.mavenReport</url>
         </site>
     </distributionManagement>
+
 
 </project>
