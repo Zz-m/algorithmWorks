@@ -15,7 +15,7 @@ public class Digraph {
         this.v = v;
         this.e = 0;
         adj = (Bag<Integer>[]) new Bag[v];
-        for (int i = 0; i< v; i++)
+        for (int i = 0; i < v; i++)
             adj[i] = new Bag<>();
     }
 
@@ -25,18 +25,18 @@ public class Digraph {
             if (this.v < 0) {
                 throw new IllegalArgumentException("Number of vertices in a Digraph must be nonnegative");
             } else {
-                this.adj = (Bag[])(new Bag[this.v]);
+                this.adj = (Bag[]) (new Bag[this.v]);
 
-                int E;
-                for(E = 0; E < this.v; ++E) {
-                    this.adj[E] = new Bag();
+                for (int i = 0; i < this.v; ++i) {
+                    this.adj[i] = new Bag();
                 }
 
+                int E;
                 E = in.readInt();
                 if (E < 0) {
                     throw new IllegalArgumentException("Number of edges in a Digraph must be nonnegative");
                 } else {
-                    for(int i = 0; i < E; ++i) {
+                    for (int i = 0; i < E; ++i) {
                         int v = in.readInt();
                         int w = in.readInt();
                         this.addEdge(v, w);
@@ -69,8 +69,8 @@ public class Digraph {
     public Digraph reverse() {
         Digraph reverse = new Digraph(v);
         for (int i = 0; i < v; i++)
-            for (int w : adj(v))
-                reverse.addEdge(w,i);
+            for (int w : adj(i))
+                reverse.addEdge(w, i);
         return reverse;
     }
 }

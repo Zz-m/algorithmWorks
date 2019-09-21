@@ -4,6 +4,9 @@ import edu.princeton.cs.introcs.In;
 
 import java.io.File;
 
+/**
+ * 有向图
+ */
 public class TinyDG {
     public static Digraph getTinyDG() {
         File currentDirFile = new File(".");
