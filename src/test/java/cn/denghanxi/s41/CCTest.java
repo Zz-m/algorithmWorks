@@ -33,6 +33,7 @@ public class CCTest {
     public void testConnect() {
         CC cc = new CC(tinyGraph);
         assertTrue(cc.connected(0, 5));
+        assertFalse(cc.connected(6, 7));
     }
 
     private void printCC(Graph graph, CC cc) {
