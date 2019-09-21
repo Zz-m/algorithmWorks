@@ -47,6 +47,10 @@ public class EdgeWeightedDigraph {
         return v;
     }
 
+    int e() {
+        return e;
+    }
+
     Iterable<DirectedEdge> edges() {
         Bag<DirectedEdge> list = new Bag<DirectedEdge>();
         for (int v = 0; v < this.v; v++) {
@@ -61,9 +65,4 @@ public class EdgeWeightedDigraph {
         return new EdgeWeightedDigraph(new In(EdgeWeightedDigraph.class.getResource("/tinyEWD.txt")));
     }
 
-    public static void main(String[] args) {
-        EdgeWeightedDigraph edgeWeightedDigraph = tinyEWD();
-        System.out.println(edgeWeightedDigraph.e);
-        System.out.println(edgeWeightedDigraph.v);
-    }
 }
