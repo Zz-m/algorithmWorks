@@ -24,9 +24,15 @@ public class CCTest {
     }
 
     @Test
-    public void testTinyG() {
+    public void testPrint() {
         printCC(tinyGraph, new CC(tinyGraph));
         printCC(mediumGraph, new CC(mediumGraph));
+    }
+
+    @Test
+    public void testConnect() {
+        CC cc = new CC(tinyGraph);
+        assertTrue(cc.connected(0, 5));
     }
 
     private void printCC(Graph graph, CC cc) {
