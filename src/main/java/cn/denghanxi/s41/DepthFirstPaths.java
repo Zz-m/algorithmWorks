@@ -40,19 +40,4 @@ public class DepthFirstPaths implements Paths {
         return path;
     }
 
-    public static void main(String[] args) {
-//        Graph graph = TinyG.getTinyG();
-        Graph graph = MediumG.getMediumG();
-        int s = 1;
-        Paths search = new DepthFirstPaths(graph, s);
-
-        for (int v = 0; v < graph.V(); v++) {
-            StdOut.print(s + " to " + v + ": ");
-            if (search.hasPathTo(v))
-                for (int x : search.pathTo(v))
-                    if (x == s) StdOut.print(x);
-                    else StdOut.print("-" + x);
-            StdOut.println();
-        }
-    }
 }
