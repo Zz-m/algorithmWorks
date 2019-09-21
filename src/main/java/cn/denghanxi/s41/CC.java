@@ -46,26 +46,4 @@ public class CC {
         return id[v];
     }
 
-    public static void test(Graph graph, CC cc) {
-        int m = cc.count();
-        StdOut.println(m + " components");
-        Bag<Integer>[] components = (Bag<Integer>[]) new Bag[m];
-        for (int i = 0; i < m; i++)
-            components[i] = new Bag<>();
-        for (int v = 0; v < graph.V(); v++)
-            components[cc.id(v)].add(v);
-        for (int i = 0; i < m; i++) {
-            for (int v : components[i])
-                StdOut.print(v + " ");
-            StdOut.println();
-        }
-    }
-
-    public static void main(String[] args) {
-        Graph graph = TinyG.getTinyG();
-        test(graph, new CC(graph));
-        StdOut.println("--------------------");
-        Graph graphMedium = MediumG.getMediumG();
-        test(graphMedium, new CC(graphMedium));
-    }
 }
