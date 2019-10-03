@@ -5,6 +5,7 @@ import edu.princeton.cs.introcs.In;
 
 /**
  * Created by dhx on 2018/7/4.
+ * 加权有向图
  */
 public class EdgeWeightedDigraph {
 
@@ -52,7 +53,7 @@ public class EdgeWeightedDigraph {
     }
 
     Iterable<DirectedEdge> edges() {
-        Bag<DirectedEdge> list = new Bag<DirectedEdge>();
+        Bag<DirectedEdge> list = new Bag<>();
         for (int v = 0; v < this.v; v++) {
             for (DirectedEdge e : adj(v)) {
                 list.add(e);
