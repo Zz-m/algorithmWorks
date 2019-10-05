@@ -21,6 +21,19 @@ public class AcyclicSPTest {
         assertTrue(acyclicSP.hasPathTo(7));
 
         assertEquals(0.61, acyclicSP.distTo(3), 0.0);
+
+        Iterable<DirectedEdge> pathTo6 = acyclicSP.pathTo(6);
+
+        StringBuilder sb = new StringBuilder();
+
+        for (DirectedEdge edge : pathTo6) {
+            sb.append(edge.from()).append(edge.to());
+            System.out.println(edge.from() + " --- " + edge.to());
+        }
+
+        assertEquals(sb.toString(), "511336");
+
+
     }
 
     @Test
