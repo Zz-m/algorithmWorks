@@ -62,8 +62,20 @@ public class EdgeWeightedDigraph {
         return list;
     }
 
+    /**
+     * 获取加权有向图
+     * @return 加权有向图
+     */
     public static EdgeWeightedDigraph tinyEWD() {
         return new EdgeWeightedDigraph(new In(EdgeWeightedDigraph.class.getResource("/tinyEWD.txt")));
+    }
+
+    /**
+     * 获取加权有向无环图
+     * @return 加权有向无环图
+     */
+    public static EdgeWeightedDigraph tinyEWDAG() {
+        return new EdgeWeightedDigraph(new In(EdgeWeightedDigraph.class.getResource("/tinyEWDAG.txt")));
     }
 
 }
