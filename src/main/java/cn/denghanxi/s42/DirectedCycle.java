@@ -1,5 +1,7 @@
 package cn.denghanxi.s42;
 
+import cn.denghanxi.s44.DirectedEdge;
+import cn.denghanxi.s44.EdgeWeightedDigraph;
 import edu.princeton.cs.algorithms.Stack;
 
 /**
@@ -19,6 +21,14 @@ public class DirectedCycle {
             if (!marked[v]) dfs(digraph, v);
     }
 
+    public DirectedCycle(EdgeWeightedDigraph edgeWeightedDigraph) {
+        onStack = new boolean[edgeWeightedDigraph.v()];
+        edgeTo = new int[edgeWeightedDigraph.v()];
+        marked = new boolean[edgeWeightedDigraph.v()];
+        for (int v = 0; v < edgeWeightedDigraph.v(); v++)
+            if (!marked[v]) dfs(edgeWeightedDigraph, v);
+    }
+
     private void dfs(Digraph digraph, int v) {
         onStack[v] = true;
         marked[v] = true;
@@ -32,6 +42,24 @@ public class DirectedCycle {
                 for (int x = v; x != w; x = edgeTo[x])
                     cycle.push(x);
                 cycle.push(w);
+                cycle.push(v);
+            }
+        onStack[v] = false;
+    }
+
+    private void dfs(EdgeWeightedDigraph edgeWeightedDigraph, int v) {
+        onStack[v] = true;
+        marked[v] = true;
+        for (DirectedEdge edge : edgeWeightedDigraph.adj(v))
+            if (this.hasCycle()) return;
+            else if (!marked[edge.to()]) {
+                edgeTo[edge.to()] = v;
+                dfs(edgeWeightedDigraph, edge.to());
+            } else if (onStack[edge.to()]) {
+                cycle = new Stack<>();
+                for (int x = v; x != edge.to(); x = edgeTo[x])
+                    cycle.push(x);
+                cycle.push(edge.to());
                 cycle.push(v);
             }
         onStack[v] = false;
