@@ -3,6 +3,9 @@ package cn.denghanxi.s44;
 import edu.princeton.cs.algorithms.IndexMinPQ;
 import edu.princeton.cs.algorithms.Stack;
 
+/**
+ * Dijkstra 最短路径算法
+ */
 public class DijkstraSP implements SP {
 
     private double[] distTo; //存储源点到每个顶点的距离
