@@ -78,4 +78,19 @@ public class EdgeWeightedDigraph {
         return new EdgeWeightedDigraph(new In(EdgeWeightedDigraph.class.getResource("/tinyEWDAG.txt")));
     }
 
+    /**
+     * 获取带负权重边、没有负权重环的加权有向图
+     * @return 带负权重边、没有负权重环的加权有向图
+     */
+    public static EdgeWeightedDigraph tinyEWDn() {
+        return new EdgeWeightedDigraph(new In(EdgeWeightedDigraph.class.getResource("/tinyEWDn.txt")));
+    }
+
+    /**
+     * 获取带负权重环的加权有向图
+     * @return 带负权重环的加权有向图
+     */
+    public static EdgeWeightedDigraph tinyEWDnc() {
+        return new EdgeWeightedDigraph(new In(EdgeWeightedDigraph.class.getResource("/tinyEWDnc.txt")));
+    }
 }
