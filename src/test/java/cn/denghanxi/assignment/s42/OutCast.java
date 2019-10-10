@@ -1,4 +1,4 @@
-package cn.denghanxi.assignment.s4;
+package cn.denghanxi.assignment.s42;
 
 public class OutCast {
 

@@ -1,4 +1,4 @@
-package cn.denghanxi.assignment.s4;
+package cn.denghanxi.assignment.s42;
 
 import edu.princeton.cs.algorithms.Digraph;
 import edu.princeton.cs.introcs.In;
