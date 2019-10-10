@@ -1,7 +1,7 @@
 package cn.denghanxi.s44;
 
-import edu.princeton.cs.algorithms.Bag;
-import edu.princeton.cs.introcs.In;
+import edu.princeton.cs.algs4.Bag;
+import edu.princeton.cs.algs4.In;
 
 /**
  * Created by dhx on 2018/7/4.

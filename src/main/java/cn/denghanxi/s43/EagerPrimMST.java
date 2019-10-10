@@ -1,6 +1,6 @@
 package cn.denghanxi.s43;
 
-import edu.princeton.cs.algorithms.IndexMinPQ;
+import edu.princeton.cs.algs4.IndexMinPQ;
 
 /**
  * Created by dhx on 2018/6/21.

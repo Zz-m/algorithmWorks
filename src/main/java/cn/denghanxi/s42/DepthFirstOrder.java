@@ -3,8 +3,8 @@ package cn.denghanxi.s42;
 
 import cn.denghanxi.s44.DirectedEdge;
 import cn.denghanxi.s44.EdgeWeightedDigraph;
-import edu.princeton.cs.algorithms.Queue;
-import edu.princeton.cs.algorithms.Stack;
+import edu.princeton.cs.algs4.Queue;
+import edu.princeton.cs.algs4.Stack;
 
 /**
  * 深度优先搜索排序，支持前序、后序、逆后序

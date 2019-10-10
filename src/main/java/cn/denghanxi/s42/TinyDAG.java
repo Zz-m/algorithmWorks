@@ -1,6 +1,6 @@
 package cn.denghanxi.s42;
 
-import edu.princeton.cs.introcs.In;
+import edu.princeton.cs.algs4.In;
 
 import java.io.File;
 

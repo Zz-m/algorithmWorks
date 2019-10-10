@@ -1,7 +1,7 @@
 package cn.denghanxi.s41;
 
-import edu.princeton.cs.algorithms.Stack;
-import edu.princeton.cs.introcs.StdOut;
+import edu.princeton.cs.algs4.Stack;
+import edu.princeton.cs.algs4.StdOut;
 
 public class DepthFirstPaths implements Paths {
 

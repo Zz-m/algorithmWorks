@@ -1,7 +1,7 @@
 package cn.denghanxi.assignment.s42;
 
-import edu.princeton.cs.algorithms.Digraph;
-import edu.princeton.cs.introcs.In;
+import edu.princeton.cs.algs4.Digraph;
+import edu.princeton.cs.algs4.In;
 
 import java.util.*;
 

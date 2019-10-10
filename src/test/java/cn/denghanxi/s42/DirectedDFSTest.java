@@ -1,7 +1,7 @@
 package cn.denghanxi.s42;
 
-import edu.princeton.cs.algorithms.Bag;
-import edu.princeton.cs.introcs.StdOut;
+import edu.princeton.cs.algs4.Bag;
+import edu.princeton.cs.algs4.StdOut;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

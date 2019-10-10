@@ -1,7 +1,7 @@
 package cn.denghanxi.s44;
 
-import edu.princeton.cs.algorithms.IndexMinPQ;
-import edu.princeton.cs.algorithms.Stack;
+import edu.princeton.cs.algs4.IndexMinPQ;
+import edu.princeton.cs.algs4.Stack;
 
 /**
  * Dijkstra 最短路径算法

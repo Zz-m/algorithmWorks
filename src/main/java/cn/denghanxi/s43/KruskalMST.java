@@ -1,8 +1,8 @@
 package cn.denghanxi.s43;
 
-import edu.princeton.cs.algorithms.MinPQ;
-import edu.princeton.cs.algorithms.Queue;
-import edu.princeton.cs.algorithms.UF;
+import edu.princeton.cs.algs4.MinPQ;
+import edu.princeton.cs.algs4.Queue;
+import edu.princeton.cs.algs4.UF;
 
 /**
  * Created by dhx on 2018/6/20.

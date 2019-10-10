@@ -16,16 +16,10 @@
 
     <dependencies>
 
-        <!--   <dependency>
-               <groupId>junit</groupId>
-               <artifactId>junit</artifactId>
-               <version>4.12</version>
-           </dependency>-->
-
         <dependency>
-            <groupId>com.googlecode.princeton-java-algorithms</groupId>
-            <artifactId>algorithms</artifactId>
-            <version>4.0.1</version>
+            <groupId>edu.princeton.cs</groupId>
+            <artifactId>algs4</artifactId>
+            <version>1.0.4</version>
         </dependency>
 
         <dependency>

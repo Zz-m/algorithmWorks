@@ -1,6 +1,6 @@
 package cn.denghanxi.s43;
 
-import edu.princeton.cs.introcs.StdOut;
+import edu.princeton.cs.algs4.StdOut;
 import org.junit.Test;
 
 /**

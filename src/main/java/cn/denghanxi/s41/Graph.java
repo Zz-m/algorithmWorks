@@ -1,7 +1,7 @@
 package cn.denghanxi.s41;
 
-import edu.princeton.cs.algorithms.Bag;
-import edu.princeton.cs.introcs.In;
+import edu.princeton.cs.algs4.Bag;
+import edu.princeton.cs.algs4.In;
 
 /**
  * 图的简单实现，所有参数都没有做验证

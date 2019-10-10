@@ -1,7 +1,7 @@
 package cn.denghanxi.assignment.s42;
 
-import edu.princeton.cs.algorithms.BreadthFirstDirectedPaths;
-import edu.princeton.cs.algorithms.Digraph;
+import edu.princeton.cs.algs4.BreadthFirstDirectedPaths;
+import edu.princeton.cs.algs4.Digraph;
 
 /**
  * shortest ancestral path

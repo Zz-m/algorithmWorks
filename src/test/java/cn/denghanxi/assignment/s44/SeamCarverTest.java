@@ -1,7 +1,6 @@
 package cn.denghanxi.assignment.s44;
 
-import edu.princeton.cs.introcs.In;
-import edu.princeton.cs.introcs.Picture;
+import edu.princeton.cs.algs4.Picture;
 import org.junit.Before;
 import org.junit.Test;
 

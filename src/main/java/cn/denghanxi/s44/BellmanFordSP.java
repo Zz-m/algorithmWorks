@@ -1,8 +1,8 @@
 package cn.denghanxi.s44;
 
 
-import edu.princeton.cs.algorithms.Queue;
-import edu.princeton.cs.algorithms.Stack;
+import edu.princeton.cs.algs4.Queue;
+import edu.princeton.cs.algs4.Stack;
 
 /**
  * Bellman-Ford 最短路径算法，可以解决负权重边，并检测负权重环

@@ -1,7 +1,7 @@
 package cn.denghanxi.s42;
 
-import edu.princeton.cs.algorithms.Bag;
-import edu.princeton.cs.introcs.In;
+import edu.princeton.cs.algs4.Bag;
+import edu.princeton.cs.algs4.In;
 
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;

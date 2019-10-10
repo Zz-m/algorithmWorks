@@ -1,7 +1,7 @@
 package cn.denghanxi.s44;
 
 import cn.denghanxi.s42.Topological;
-import edu.princeton.cs.algorithms.Stack;
+import edu.princeton.cs.algs4.Stack;
 
 /**
  * 计算加权有向无环图源点最短路径
