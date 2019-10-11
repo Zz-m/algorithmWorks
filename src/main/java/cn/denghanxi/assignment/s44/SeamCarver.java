@@ -18,15 +18,15 @@ public class SeamCarver {
     // create a seam carver object based on the given picture
     public SeamCarver(Picture picture) {
         if (picture == null) throw new IllegalArgumentException("SeamCarver null");
-        this.picture = picture;
-        w = picture.width();
-        h = picture.height();
-        energyMap = computeEnergyMap(picture);
+        this.picture = copyPicture(picture);
+        w = this.picture.width();
+        h = this.picture.height();
+        energyMap = computeEnergyMap(this.picture);
     }
 
     // current picture
     public Picture picture() {
-        return picture;
+        return copyPicture(picture);
     }
 
     // width of current picture
@@ -60,35 +60,46 @@ public class SeamCarver {
 
     // sequence of indices for horizontal seam
     public int[] findHorizontalSeam() {
-        double totalEnergy = Double.POSITIVE_INFINITY;
-        int[] path = null;
-
-        for (int i = 0; i < h; i++) {
-            double tmpTotalEnergy = 0.0;
-            int[] tmpPath = new int[w];
-            int tmpY = i;
-            tmpTotalEnergy += energyMap[0][tmpY];
-            tmpPath[0] = i;
-            for (int j = 1; j < w; j++) {
-                int nextY = tmpY;
-                double tmpEnergy = energyMap[j][nextY];
-                if (tmpY - 1 >= 0) {
-                    if (tmpEnergy > energyMap[j][nextY - 1]) {
-                        nextY = tmpY - 1;
+        double[][] dist = computeEnergyMap(picture);
+        for (int i = 0; i < w; i++) {
+            for (int j = 0; j < h; j++) {
+                if (i != 0) {
+                    double preDist = dist[i - 1][j];
+                    if (j - 1 >= 0 && preDist > dist[i - 1][j - 1]) {
+                        preDist = dist[i - 1][j - 1];
                     }
-                }
-                if (tmpY + 1 < h) {
-                    if (tmpEnergy > energyMap[j][nextY + 1]) {
-                        nextY = tmpY + 1;
+                    if (j + 1 < h && preDist > dist[i - 1][j + 1]) {
+                        preDist = dist[i - 1][j + 1];
                     }
+                    dist[i][j] = preDist + dist[i][j];
                 }
-                tmpY = nextY;
-                tmpTotalEnergy += energyMap[j][tmpY];
-                tmpPath[j] = tmpY;
             }
-            if (totalEnergy > tmpTotalEnergy) {
-                totalEnergy = tmpTotalEnergy;
-                path = tmpPath;
+        }
+        int[] path = new int[w];
+        for (int i = w - 1; i >= 0; i--) {
+            if (i == w - 1) {
+                int minJ = 0;
+                double minEnergy = Double.POSITIVE_INFINITY;
+                for (int j = 0; j < h; j++) {
+                    if (dist[i][j] < minEnergy) {
+                        minEnergy = dist[i][j];
+                        minJ = j;
+                    }
+                }
+                path[w - 1] = minJ;
+            } else {
+                int curJ = path[i + 1];
+                int targetJ = curJ;
+                double curDist = dist[i][curJ];
+                if (curJ - 1 >= 0 && dist[i][curJ - 1] < curDist) {
+                    curDist = dist[i][curJ - 1];
+                    targetJ = curJ - 1;
+                }
+                if (curJ + 1 < h && dist[i][curJ + 1] < curDist) {
+                    curDist = dist[i][curJ + 1];
+                    targetJ = curJ + 1;
+                }
+                path[i] = targetJ;
             }
         }
 
@@ -97,34 +108,46 @@ public class SeamCarver {
 
     // sequence of indices for vertical seam
     public int[] findVerticalSeam() {
-        double totalEnergy = Double.POSITIVE_INFINITY;
-        int[] path = null;
-        for (int i = 0; i < w; i++) {
-            double tmpTotalEnergy = 0.0;
-            int[] tmpPath = new int[h];
-            int tmpX = i;
-            tmpTotalEnergy += energyMap[tmpX][0];
-            tmpPath[0] = i;
-            for (int j = 1; j < h; j++) {
-                int nextX = tmpX;
-                double tmpEnergy = energyMap[nextX][j];
-                if (tmpX - 1 >= 0) {
-                    if (tmpEnergy > energyMap[nextX - 1][j]) {
-                        nextX = tmpX - 1;
+        double[][] dist = computeEnergyMap(picture);
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < w; j++) {
+                if (i != 0) {
+                    double preDist = dist[j][i - 1];
+                    if (j - 1 >= 0 && dist[j - 1][i - 1] < preDist) {
+                        preDist = dist[j - 1][i - 1];
                     }
-                }
-                if (tmpX + 1 < w) {
-                    if (tmpEnergy > energyMap[nextX + 1][j]) {
-                        nextX = tmpX + 1;
+                    if (j + 1 < w && dist[j + 1][i - 1] < preDist) {
+                        preDist = dist[j + 1][i - 1];
                     }
+                    dist[j][i] += preDist;
                 }
-                tmpX = nextX;
-                tmpTotalEnergy += energyMap[tmpX][j];
-                tmpPath[j] = tmpX;
             }
-            if (totalEnergy > tmpTotalEnergy) {
-                totalEnergy = tmpTotalEnergy;
-                path = tmpPath;
+        }
+        int[] path = new int[h];
+        for (int i = h - 1; i >= 0; i--) {
+            if (i == h - 1) {
+                int minJ = 0;
+                double minDist = Double.POSITIVE_INFINITY;
+                for (int j = 0; j < w; j++) {
+                    if (dist[j][i] < minDist) {
+                        minJ = j;
+                        minDist = dist[j][i];
+                    }
+                }
+                path[h - 1] = minJ;
+            } else {
+                int curJ = path[i + 1];
+                int targetJ = curJ;
+                double curDist = dist[curJ][i];
+                if (curJ - 1 >= 0 && dist[curJ - 1][i] < curDist) {
+                    curDist = dist[curJ - 1][i];
+                    targetJ = curJ - 1;
+                }
+                if (curJ + 1 < w && dist[curJ + 1][i] < curDist) {
+                    curDist = dist[curJ + 1][i];
+                    targetJ = curJ + 1;
+                }
+                path[i] = targetJ;
             }
         }
 
@@ -168,12 +191,13 @@ public class SeamCarver {
                 }
             }
         }
+        update(newPic);
     }
 
     private void checkSeam(int[] seam) {
         for (int i = 0; i < seam.length; i++) {
-            if (i > 0 && i < seam.length - 1) {
-                if (seam[i] - seam[i + 1] > 1 || seam[i] - seam[i + 1] < -1)
+            if (i > 0) {
+                if (seam[i] - seam[i - 1] > 1 || seam[i] - seam[i - 1] < -1)
                     throw new IllegalArgumentException("seam out of range");
             }
         }
@@ -194,6 +218,16 @@ public class SeamCarver {
         this.w = picture.width();
         this.h = picture.height();
         this.energyMap = computeEnergyMap(picture);
+    }
+
+    private Picture copyPicture(Picture picture) {
+        Picture newPic = new Picture(picture.width(), picture.height());
+        for (int i = 0; i < picture.height(); i++) {
+            for (int j = 0; j < picture.width(); j++) {
+                newPic.set(j, i, picture.get(j, i));
+            }
+        }
+        return newPic;
     }
 
 }

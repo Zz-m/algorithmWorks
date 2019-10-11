@@ -23,6 +23,8 @@ public class SeamCarverTest {
     @Test
     public void simpleTest() {
         SeamCarver seamCarver = new SeamCarver(picture);
+        assertEquals(6, seamCarver.picture().width());
+        assertEquals(5, seamCarver.picture().height());
         assertEquals(1000.0, seamCarver.energy(0, 0), 0.1);
         assertEquals(237.35, seamCarver.energy(1, 1), 0.1);
         for (int i = 0; i < seamCarver.height(); i++) {
@@ -42,8 +44,13 @@ public class SeamCarverTest {
         for (int i = 0; i < horizontalSeam.length; i++) {
             stringBuilder.append(horizontalSeam[i]);
         }
-        assertEquals(stringBuilder.toString(), "121211");
+        //算法首尾元素一定范围可变，都是正常的
+        stringBuilder.deleteCharAt(0);
+        stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+        assertEquals(stringBuilder.toString(), "2121");
         seamCarver.removeHorizontalSeam(horizontalSeam);
+        assertEquals(6, seamCarver.picture().width());
+        assertEquals(4, seamCarver.picture().height());
     }
 
     @Test
@@ -55,8 +62,13 @@ public class SeamCarverTest {
         for (int i = 0; i < verticalSeam.length; i++) {
             stringBuilder.append(verticalSeam[i]);
         }
-        assertEquals(stringBuilder.toString(), "44322");
+        //算法首尾元素一定范围可变，都是正常的
+        stringBuilder.deleteCharAt(0);
+        stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+        assertEquals(stringBuilder.toString(), "432");
         seamCarver.removeVerticalSeam(verticalSeam);
+        assertEquals(5, seamCarver.picture().width());
+        assertEquals(5, seamCarver.picture().height());
     }
 
 }
