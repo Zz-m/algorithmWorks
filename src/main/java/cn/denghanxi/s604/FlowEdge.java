@@ -1,4 +1,4 @@
-package cn.denghanxi.s51;
+package cn.denghanxi.s604;
 
 /**
  * 流量网络的边

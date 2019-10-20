@@ -1,4 +1,4 @@
-package cn.denghanxi.s51;
+package cn.denghanxi.s604;
 
 import edu.princeton.cs.algs4.Queue;
 
