@@ -1,2 +1,2 @@
 # algorithmWorks
-Algorithm Homework Stuff
+Basic algorithm Java implementation.
