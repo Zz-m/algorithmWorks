@@ -31,4 +31,15 @@ public class FordFulkersonTest {
         assertEquals(4.0, maxflow.value(), 1e-10);
     }
 
+    @Test
+    public void testMinCut() {
+        int s = 0; int t = tinyFN.v() - 1;
+        FordFulkerson maxflow = new FordFulkerson(tinyFN, s, t);
+        assertTrue(maxflow.inCut(0));
+        assertFalse(maxflow.inCut(1));
+        assertTrue(maxflow.inCut(2));
+        assertFalse(maxflow.inCut(3));
+        assertFalse(maxflow.inCut(4));
+        assertFalse(maxflow.inCut(5));
+    }
 }
