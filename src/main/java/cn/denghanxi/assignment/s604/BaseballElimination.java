@@ -80,8 +80,16 @@ public class BaseballElimination {
     public Iterable<String> certificateOfElimination(String team) {
         if (!teams.contains(team)) throw new IllegalArgumentException("没有该队伍");
         if (isTrivialEliminate(team)) {
-            List<String> team2 = new ArrayList<>(teams);
-            team2.remove(team);
+            List<String> team2 = new ArrayList<>();
+            int largestIndex = 0;
+            int mostWin = wins[largestIndex];
+            for (int i = 0; i < teams.size(); i++) {
+                if (wins[i] > mostWin) {
+                    largestIndex = i;
+                    mostWin = wins[i];
+                }
+            }
+            team2.add(teams.get(largestIndex));
             return team2;
         }
         if (!isNonTrivialEliminate(team)) return null;
