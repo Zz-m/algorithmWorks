@@ -56,7 +56,7 @@ public class Alphabet {
 
     /**
      * 基数-字母表中的字符数量
-     *
+     * /
      * @return 基数
      */
     public int r() {
