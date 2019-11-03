@@ -28,7 +28,7 @@ public class BoggleSolverTest {
     @Test
     public void scoreOf() {
         BoggleSolver boggleSolver  = new BoggleSolver(dicCommon);
-        assertEquals(1, boggleSolver.scoreOf("asd"), boggleSolver.scoreOf("asda"));
+        assertEquals(0, boggleSolver.scoreOf("asd"), boggleSolver.scoreOf("asda"));
     }
 
     @Test

@@ -10,6 +10,8 @@ public class BoggleSolver {
     private Map<String, Boolean> dic;
     private Set<String> result;
     private boolean[][] marked;
+
+    private StringBuilder stringBuilder = new StringBuilder();
     private Node root;
 
     // Initializes the data structure using the given array of strings as the dictionary.
@@ -28,21 +30,21 @@ public class BoggleSolver {
     }
 
     private void setupNode(Node root, String s, int i) {
-        if (root.next[s.charAt(i)] == null) {
-            root.next[s.charAt(i)] = new Node();
+        if (root.next.get(s.charAt(i)) == null) {
+            root.next.put(s.charAt(i), new Node());
         }
         if (i + 1 < s.length()) {
-            setupNode(root.next[s.charAt(i)], s, i + 1);
+            setupNode(root.next.get(s.charAt(i)), s, i + 1);
         }
     }
 
     // Returns the set of all valid words in the given Boggle board, as an Iterable.
     public Iterable<String> getAllValidWords(BoggleBoard board) {
         result = new HashSet<>();
+        marked = new boolean[board.rows()][board.cols()];
         for (int i = 0; i < board.rows(); i++) {
             for (int j = 0; j < board.cols(); j++) {
-                marked = new boolean[board.rows()][board.cols()];
-                StringBuilder stringBuilder = new StringBuilder();
+
                 crawl(board, i, j, stringBuilder, root);
             }
         }
@@ -62,7 +64,7 @@ public class BoggleSolver {
             stringBuilder.deleteCharAt(stringBuilder.length() - 1);
             return;
         }
-        ;
+
         marked[row][col] = true;
 
         //go on
@@ -105,12 +107,12 @@ public class BoggleSolver {
         stringBuilder.deleteCharAt(stringBuilder.length() - 1);
     }
 
-    private Node nextNode(Node node, char c) {
-        if (c == 'q' || c == 'Q') {
-            if (node.next[c] == null) return null;
-            return node.next[c].next['U'];
+    private Node nextNode(Node node, char nextChar) {
+        if (nextChar == 'q' || nextChar == 'Q') {
+            if (node.next.get(nextChar) == null) return null;
+            return node.next.get(nextChar).next.get('U');
         }
-        return node.next[c];
+        return node.next.get(nextChar);
     }
 
     private void checkIfAWord(StringBuilder stringBuilder) {
@@ -145,12 +147,12 @@ public class BoggleSolver {
     }
 
     private boolean isAWord(String s) {
-        return dic.get(s) == null ? false : true;
+        return dic.get(s) != null;
     }
 
     // R-way trie node
     private static class Node {
-        private Node[] next = new Node[256];
+        Map<Character, Node> next = new HashMap<>();
     }
 }
 
