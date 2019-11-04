@@ -1,13 +1,14 @@
 package cn.denghanxi.assignment.s53;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
+/**
+ * 注意，所有字典必须为大写！！！ 因为 Node 是为了性能的实现。
+ */
 public class BoggleSolver {
 
-    private Map<String, Boolean> dic;
+//    private Map<String, Boolean> dic;
     private Set<String> result;
     private boolean[][] marked;
 
@@ -17,10 +18,6 @@ public class BoggleSolver {
     // Initializes the data structure using the given array of strings as the dictionary.
     // (You can assume each word in the dictionary contains only the uppercase letters A through Z.)
     public BoggleSolver(String[] dictionary) {
-        this.dic = new HashMap<>();
-        for (String s : dictionary) {
-            dic.put(s, true);
-        }
         root = new Node();
         for (String s : dictionary) {
             if (s.length() > 0) {
@@ -35,6 +32,9 @@ public class BoggleSolver {
         }
         if (i + 1 < s.length()) {
             setupNode(root.getNext(s.charAt(i)), s, i + 1);
+        }
+        if (i + 1 == s.length()) {
+            root.getNext(s.charAt(i)).setWord(true);
         }
     }
 
@@ -54,7 +54,6 @@ public class BoggleSolver {
     private void crawl(BoggleBoard board, int row, int col, StringBuilder stringBuilder, Node node) {
         char c = board.getLetter(row, col);
         stringBuilder.append((c == 'q' || c == 'Q') ? "QU" : c);
-        checkIfAWord(stringBuilder);
 
         Node nextNode = nextNode(node, c);
         if (nextNode == null) {
@@ -63,6 +62,12 @@ public class BoggleSolver {
             }
             stringBuilder.deleteCharAt(stringBuilder.length() - 1);
             return;
+        }
+        //checkIfAWord(stringBuilder);
+        if (stringBuilder.length() > 2) {
+            if (nextNode.isWord()) {
+                result.add(stringBuilder.toString());
+            }
         }
 
         marked[row][col] = true;
@@ -115,18 +120,16 @@ public class BoggleSolver {
         return node.getNext(nextChar);
     }
 
-    private void checkIfAWord(StringBuilder stringBuilder) {
-        if (stringBuilder.length() > 2) {
-            if (isAWord(stringBuilder.toString())) {
-                result.add(stringBuilder.toString());
-            }
-        }
-    }
-
     // Returns the score of the given word if it is in the dictionary, zero otherwise.
     // (You can assume the word contains only the uppercase letters A through Z.)
     public int scoreOf(String word) {
-        if (dic.get(word) == null) return 0;
+        Node node = root;
+        for (char c : word.toCharArray()) {
+            node = node.getNext(c);
+            if (node == null) return 0;
+        }
+        if (!node.isWord) return 0;
+
         switch (word.length()) {
             case 0:
             case 1:
@@ -146,19 +149,26 @@ public class BoggleSolver {
         }
     }
 
-    private boolean isAWord(String s) {
-        return dic.get(s) != null;
-    }
-
     // R-way trie node
     private static class Node {
+        private boolean isWord = false;
         private Node[] next;
+
+        public boolean isWord() {
+            return isWord;
+        }
+
+        public void setWord(boolean word) {
+            isWord = word;
+        }
+
         void put(char index, Node node) {
             if (next == null) {
                 next = new Node[26];
             }
             next[index - 65] = node;
         }
+
         Node getNext(char c) {
             if (next == null) return null;
             return next[c - 65];
