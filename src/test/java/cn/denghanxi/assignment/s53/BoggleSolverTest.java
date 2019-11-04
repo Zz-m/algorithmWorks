@@ -26,6 +26,12 @@ public class BoggleSolverTest {
     }
 
     @Test
+    public void simpleTest() {
+        System.out.println((int)'A');
+        System.out.println((int)'Z');
+    }
+
+    @Test
     public void scoreOf() {
         BoggleSolver boggleSolver  = new BoggleSolver(dicCommon);
         assertEquals(0, boggleSolver.scoreOf("asd"), boggleSolver.scoreOf("asda"));

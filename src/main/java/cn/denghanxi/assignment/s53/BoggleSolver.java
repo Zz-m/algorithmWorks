@@ -30,11 +30,11 @@ public class BoggleSolver {
     }
 
     private void setupNode(Node root, String s, int i) {
-        if (root.next.get(s.charAt(i)) == null) {
-            root.next.put(s.charAt(i), new Node());
+        if (root.getNext(s.charAt(i)) == null) {
+            root.put(s.charAt(i), new Node());
         }
         if (i + 1 < s.length()) {
-            setupNode(root.next.get(s.charAt(i)), s, i + 1);
+            setupNode(root.getNext(s.charAt(i)), s, i + 1);
         }
     }
 
@@ -109,10 +109,10 @@ public class BoggleSolver {
 
     private Node nextNode(Node node, char nextChar) {
         if (nextChar == 'q' || nextChar == 'Q') {
-            if (node.next.get(nextChar) == null) return null;
-            return node.next.get(nextChar).next.get('U');
+            if (node.getNext(nextChar) == null) return null;
+            return node.getNext(nextChar).getNext('U');
         }
-        return node.next.get(nextChar);
+        return node.getNext(nextChar);
     }
 
     private void checkIfAWord(StringBuilder stringBuilder) {
@@ -152,7 +152,17 @@ public class BoggleSolver {
 
     // R-way trie node
     private static class Node {
-        Map<Character, Node> next = new HashMap<>();
+        private Node[] next;
+        void put(char index, Node node) {
+            if (next == null) {
+                next = new Node[26];
+            }
+            next[index - 65] = node;
+        }
+        Node getNext(char c) {
+            if (next == null) return null;
+            return next[c - 65];
+        }
     }
 }
 
