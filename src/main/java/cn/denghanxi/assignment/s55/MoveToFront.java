@@ -66,16 +66,16 @@ public class MoveToFront {
     public static void main(String[] args) {
 //        testEncode();
 //        decode();
+        switch (args[0]) {
+            case "+":
+                decode();
+                break;
+            case "-":
+                encode();
+                break;
+            default:
+                throw new IllegalArgumentException(" must be + or -");
+        }
     }
 
-    private static void testEncode() {
-        PrintStream printStream = null;
-        try {
-            printStream = new PrintStream(new File("D:\\z-tmp\\s55\\out.txt"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        System.setOut(printStream);
-        MoveToFront.encode();
-    }
 }

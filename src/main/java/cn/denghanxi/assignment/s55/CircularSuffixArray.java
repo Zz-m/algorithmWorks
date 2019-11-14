@@ -1,7 +1,5 @@
 package cn.denghanxi.assignment.s55;
 
-import java.util.Arrays;
-
 /**
  * Burrows–Wheeler 压缩算法的中间数据结构
  */
@@ -45,7 +43,6 @@ public class CircularSuffixArray {
                 sort[i] = aux[i];
             }
         }
-        System.out.println();
     }
 
     // length of s
@@ -61,6 +58,8 @@ public class CircularSuffixArray {
 
     // unit testing (required)
     public static void main(String[] args) {
-        new CircularSuffixArray("ABRACADABRA!");
+        CircularSuffixArray array = new CircularSuffixArray("ABRACADABRA!");
+        array.length();
+        array.index(0);
     }
 }
