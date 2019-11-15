@@ -1,5 +1,9 @@
 package cn.denghanxi.assignment.s55;
 
+import edu.princeton.cs.algs4.Quick3string;
+
+import java.util.Arrays;
+
 /**
  * Burrows–Wheeler 压缩算法的中间数据结构
  */
@@ -14,36 +18,28 @@ public class CircularSuffixArray {
         for (int i = 0; i < index.length; i++) {
             index[i] = i;
         }
-        int[] index2 = new int[index.length];
-        StringBuilder stringBuilder = new StringBuilder(s);
-        char c = stringBuilder.charAt(s.length() - 1);
-        stringBuilder.deleteCharAt(s.length() - 1);
-        stringBuilder.insert(0, c);
-        String[] aux = new String[s.length()];
-        String[] sort = new String[s.length()];
-        for (int i = 0; i < s.length(); i++) {
-            c = stringBuilder.charAt(0);
-            stringBuilder.deleteCharAt(0);
-            stringBuilder.append(c);
-            aux[i] = stringBuilder.toString();
-            sort[i] = aux[i];
-        }
+        int[] aux = new int[index.length];
+
         for (int d = s.length() - 1; d >= 0; d--) {
-            int[] count = new int[256 + 1];
-            for (int k = 0; k < sort.length; k++)
-                count[sort[k].charAt(d) + 1]++;
-            for (int r = 0; r < 256; r++)
+            int[] count = new int[257];
+            for (int i = 0; i < s.length(); i++) {
+                count[charAt(s, index[i], d) + 1]++;
+            }
+            for (int r = 0; r < 256; r++) {
                 count[r + 1] += count[r];
-            for (int i = 0; i < sort.length; i++) {
-                index2[count[sort[i].charAt(d)]] = index[i];
-                aux[count[sort[i].charAt(d)]++] = sort[i];
             }
-            for (int i = 0; i < sort.length; i++) {
-                index[i] = index2[i];
-                sort[i] = aux[i];
+            for (int i = 0; i < s.length(); i++) {
+                aux[count[charAt(s, index[i], d)]++] = index[i];
             }
+            System.arraycopy(aux, 0, index, 0, s.length());
         }
     }
+
+    private char charAt(String s, int start, int index) {
+        int cur = (start + index) % s.length();
+        return s.charAt(cur);
+    }
+
 
     // length of s
     public int length() {
@@ -52,7 +48,7 @@ public class CircularSuffixArray {
 
     // returns index of ith sorted suffix
     public int index(int i) {
-        if (i < 0 || i > index.length) throw new IllegalArgumentException("out of bound.");
+        if (i < 0 || i >= index.length) throw new IllegalArgumentException("out of bound.");
         return index[i];
     }
 

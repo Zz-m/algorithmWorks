@@ -2,10 +2,13 @@ package cn.denghanxi.assignment.s55;
 
 import edu.princeton.cs.algs4.BinaryStdIn;
 import edu.princeton.cs.algs4.BinaryStdOut;
-import edu.princeton.cs.algs4.Quick;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.LinkedList;
 
 /**
  * Burrows–Wheeler 变换
@@ -46,17 +49,17 @@ public class BurrowsWheeler {
             sortedRawData[i] = data.get(i);
         }
         Arrays.sort(sortedRawData);
-        boolean[] marked = new boolean[data.size()];
         int[] next = new int[data.size()];
+        Map<Byte, List<Integer>> map = new HashMap<>();
+        for (int i = 0; i < sortedRawData.length; i++) {
+            byte b = rawData[i];
+            List<Integer> list = map.computeIfAbsent(b, bb -> new LinkedList<>());
+            list.add(i);
+        }
         for (int i = 0; i < sortedRawData.length; i++) {
             byte b = sortedRawData[i];
-            for (int j = 0; j < sortedRawData.length; j++) {
-                if (rawData[j] == b && !marked[j]) {
-                    marked[j] = true;
-                    next[i] = j;
-                    break;
-                }
-            }
+            int index = map.get(b).remove(0);
+            next[i] = index;
         }
         BinaryStdOut.write((char) sortedRawData[first]);
         int cur = next[first];
@@ -66,6 +69,7 @@ public class BurrowsWheeler {
         }
         BinaryStdOut.close();
     }
+
 
     // if args[0] is "-", apply Burrows-Wheeler transform
     // if args[0] is "+", apply Burrows-Wheeler inverse transform
