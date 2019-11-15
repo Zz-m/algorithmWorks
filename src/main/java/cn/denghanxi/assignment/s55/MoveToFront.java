@@ -3,9 +3,6 @@ package cn.denghanxi.assignment.s55;
 import edu.princeton.cs.algs4.BinaryStdIn;
 import edu.princeton.cs.algs4.BinaryStdOut;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintStream;
 
 /**
  * Burrows–Wheeler 压缩算法的中间步骤
@@ -14,13 +11,13 @@ public class MoveToFront {
 
     // apply move-to-front encoding, reading from standard input and writing to standard output
     public static void encode() {
-        byte[] bytes = createBytes();
+        char[] chars = createChars();
         while (!BinaryStdIn.isEmpty()) {
-            byte b = BinaryStdIn.readByte();
-            for (int i = 0; i < bytes.length; i++) {
-                if (bytes[i] == b) {
-                    BinaryStdOut.write((byte) i);
-                    swimChar(bytes, i);
+            char c = BinaryStdIn.readChar();
+            for (int i = 0; i < chars.length; i++) {
+                if (chars[i] == c) {
+                    BinaryStdOut.write((char) i);
+                    swimChar(chars, i);
                     break;
                 }
             }
@@ -30,11 +27,11 @@ public class MoveToFront {
 
     // apply move-to-front decoding, reading from standard input and writing to standard output
     public static void decode() {
-        byte[] bytes = createBytes();
+        char[] chars = createChars();
         while (!BinaryStdIn.isEmpty()) {
-            byte b = BinaryStdIn.readByte();
-            BinaryStdOut.write((char) bytes[(int) b]);
-            swimChar(bytes, (int) b);
+            int index = BinaryStdIn.readChar();
+            BinaryStdOut.write(chars[index]);
+            swimChar(chars, index);
         }
         BinaryStdOut.close();
     }
@@ -45,6 +42,14 @@ public class MoveToFront {
             bytes[i] = (byte) i;
         }
         return bytes;
+    }
+
+    private static char[] createChars() {
+        char[] chars = new char[256];
+        for (int i = 0; i < chars.length; i++) {
+            chars[i] = (char) i;
+        }
+        return chars;
     }
 
     private static void swimChar(char[] chars, int i) {
