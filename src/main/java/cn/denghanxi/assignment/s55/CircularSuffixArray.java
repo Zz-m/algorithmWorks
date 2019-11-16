@@ -18,24 +18,33 @@ public class CircularSuffixArray {
         for (int i = 0; i < index.length; i++) {
             index[i] = i;
         }
-        int[] aux = new int[index.length];
-
-        for (int d = s.length() - 1; d >= 0; d--) {
-            int[] count = new int[257];
-            for (int i = 0; i < s.length(); i++) {
-                count[charAt(s, index[i], d) + 1]++;
-            }
-            for (int r = 0; r < 256; r++) {
-                count[r + 1] += count[r];
-            }
-            for (int i = 0; i < s.length(); i++) {
-                aux[count[charAt(s, index[i], d)]++] = index[i];
-            }
-            System.arraycopy(aux, 0, index, 0, s.length());
-        }
+        initIndex(s, 0, s.length() - 1, 0);
     }
 
-    private char charAt(String s, int start, int index) {
+    private void initIndex(String s, int lo, int hi, int d) {
+        if(hi <= lo) return;
+        int lt = lo, gt = hi;
+        int v = charAt(s, index[lo], d);
+        int i = lo + 1;
+        while (i <= gt) {
+            int t = charAt(s, index[i], d);
+            if (t < v) exch(lt++, i++);
+            else if (t > v) exch(i, gt--);
+            else i++;
+        }
+        initIndex(s, lo, lt - 1, d);
+        if (v >= 0) initIndex(s, lt, gt, d + 1);
+        initIndex(s, gt + 1, hi, d);
+    }
+
+    private void exch(int i, int j) {
+        int tmp = index[i];
+        index[i] = index[j];
+        index[j] = tmp;
+    }
+
+    private int charAt(String s, int start, int index) {
+        if (index == s.length()) return -1;
         int cur = (start + index) % s.length();
         return s.charAt(cur);
     }

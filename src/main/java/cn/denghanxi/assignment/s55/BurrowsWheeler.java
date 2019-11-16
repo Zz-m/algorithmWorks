@@ -2,13 +2,11 @@ package cn.denghanxi.assignment.s55;
 
 import edu.princeton.cs.algs4.BinaryStdIn;
 import edu.princeton.cs.algs4.BinaryStdOut;
+import edu.princeton.cs.algs4.Queue;
 
-import java.util.Arrays;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.LinkedList;
 
 /**
  * Burrows–Wheeler 变换
@@ -48,20 +46,28 @@ public class BurrowsWheeler {
             rawData[i] = data.get(i);
             sortedRawData[i] = data.get(i);
         }
-        Arrays.sort(sortedRawData);
+        //Arrays.sort(sortedRawData);
+        char[] aux = new char[sortedRawData.length];
+        int[] count = new int[256 + 1];
+        for (char sortedRawDatum : sortedRawData) count[sortedRawDatum + 1]++;
+        for (int r = 0; r < 256; r++)
+            count[r + 1] += count[r];
+        for (char sortedRawDatum : sortedRawData) aux[count[sortedRawDatum]++] = sortedRawDatum;
+        System.arraycopy(aux, 0, sortedRawData, 0, sortedRawData.length);
+        //sorted finish
         int[] next = new int[data.size()];
-        Map<Character, List<Integer>> map = new HashMap<>();
+        Map<Character, Queue<Integer>> map = new HashMap<>();
         for (int i = 0; i < sortedRawData.length; i++) {
             char b = rawData[i];
-            List<Integer> list = map.computeIfAbsent(b, bb -> new LinkedList<>());
-            list.add(i);
+            Queue<Integer> list = map.computeIfAbsent(b, bb -> new Queue<>());
+            list.enqueue(i);
         }
         for (int i = 0; i < sortedRawData.length; i++) {
             char b = sortedRawData[i];
-            int index = map.get(b).remove(0);
+            int index = map.get(b).dequeue();
             if (index == i) {
-                map.get(b).add(index);
-                index = map.get(b).remove(0);
+                map.get(b).enqueue(index);
+                index = map.get(b).dequeue();
             }
             next[i] = index;
         }
