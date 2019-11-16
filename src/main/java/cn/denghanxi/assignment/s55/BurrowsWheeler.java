@@ -28,7 +28,7 @@ public class BurrowsWheeler {
                 }
             }
             for (int i = 0; i < array.length(); i++) {
-                BinaryStdOut.write((byte)s.charAt(array.index(i) - 1 >=  0 ? array.index(i) - 1 : array.length() - 1));
+                BinaryStdOut.write((byte) s.charAt(array.index(i) - 1 >= 0 ? array.index(i) - 1 : array.length() - 1));
             }
         }
         BinaryStdOut.close();
@@ -38,33 +38,36 @@ public class BurrowsWheeler {
     // reading from standard input and writing to standard output
     public static void inverseTransform() {
         int first = BinaryStdIn.readInt();
-        ArrayList<Byte> data = new ArrayList<>();
+        ArrayList<Character> data = new ArrayList<>();
         while (!BinaryStdIn.isEmpty()) {
-            data.add(BinaryStdIn.readByte());
+            data.add(BinaryStdIn.readChar());
         }
-        byte[] rawData = new byte[data.size()];
-        byte[] sortedRawData = new byte[data.size()];
+        char[] rawData = new char[data.size()];
+        char[] sortedRawData = new char[data.size()];
         for (int i = 0; i < data.size(); i++) {
             rawData[i] = data.get(i);
             sortedRawData[i] = data.get(i);
         }
         Arrays.sort(sortedRawData);
         int[] next = new int[data.size()];
-        Map<Byte, List<Integer>> map = new HashMap<>();
+        Map<Character, List<Integer>> map = new HashMap<>();
         for (int i = 0; i < sortedRawData.length; i++) {
-            byte b = rawData[i];
+            char b = rawData[i];
             List<Integer> list = map.computeIfAbsent(b, bb -> new LinkedList<>());
             list.add(i);
         }
         for (int i = 0; i < sortedRawData.length; i++) {
-            byte b = sortedRawData[i];
+            char b = sortedRawData[i];
             int index = map.get(b).remove(0);
+            if (index == i) {
+                map.get(b).add(index);
+                index = map.get(b).remove(0);
+            }
             next[i] = index;
         }
-        BinaryStdOut.write((char) sortedRawData[first]);
-        int cur = next[first];
-        while (cur != first) {
-            BinaryStdOut.write((char) sortedRawData[cur]);
+        int cur = first;
+        for (int i = 0; i < sortedRawData.length; i++) {
+            BinaryStdOut.write(sortedRawData[cur]);
             cur = next[cur];
         }
         BinaryStdOut.close();
