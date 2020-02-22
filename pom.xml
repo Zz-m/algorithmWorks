@@ -151,7 +151,14 @@
 
     <url>http://denghanxi.cn</url>
     <distributionManagement>
-
+        <repository>
+            <id>nuc199</id>
+            <url>http://192.168.1.199:8101/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>nuc199</id>
+            <url>http://192.168.1.199:8101/repository/maven-snapshots/</url>
+        </snapshotRepository>
     </distributionManagement>
 
 
