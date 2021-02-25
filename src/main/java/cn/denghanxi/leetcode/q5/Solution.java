@@ -4,7 +4,7 @@ package cn.denghanxi.leetcode.q5;
 /**
  * Given a string s, return the longest palindromic substring in s.
  */
-public class Solution {
+class Solution {
 
 
     public String longestPalindrome(String s) {
