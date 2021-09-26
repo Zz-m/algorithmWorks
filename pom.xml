@@ -15,11 +15,11 @@
     </properties>
 
     <repositories>
-        <repository>
+<!--         <repository>
             <id>algs4</id>
             <name>princeton algorithm course maven repository</name>
             <url>https://dl.bintray.com/algs4/maven/</url>
-        </repository>
+        </repository> -->
     </repositories>
 
     <dependencies>
