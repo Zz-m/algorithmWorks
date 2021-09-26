@@ -15,6 +15,6 @@ class Solution {
 
     public static void main(String[] args) {
         System.out.println(new Solution().reverse(1534236469));
-        System.out.println(new Solution().reverse(3653456456));
+        System.out.println(new Solution().reverse(1653456456));
     }
 }

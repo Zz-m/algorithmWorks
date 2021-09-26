@@ -14,26 +14,30 @@
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
     </properties>
 
-    <repositories>
-<!--         <repository>
-            <id>algs4</id>
-            <name>princeton algorithm course maven repository</name>
-            <url>https://dl.bintray.com/algs4/maven/</url>
-        </repository> -->
-    </repositories>
+<!--    <repositories>-->
+<!--         <repository>-->
+<!--            <id>algs4</id>-->
+<!--            <name>princeton algorithm course maven repository</name>-->
+<!--            <url>https://dl.bintray.com/algs4/maven/</url>-->
+<!--        </repository>-->
+<!--    </repositories>-->
 
     <dependencies>
 
+        <!-- https://mvnrepository.com/artifact/edu.princeton.cs/algs4 -->
         <dependency>
             <groupId>edu.princeton.cs</groupId>
             <artifactId>algs4</artifactId>
             <version>1.0.4</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/algs4.jar</systemPath>
         </dependency>
+
 
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13.1</version>
+            <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
 
